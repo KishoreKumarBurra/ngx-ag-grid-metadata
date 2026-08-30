@@ -1,0 +1,38 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npx ng test ngx-ag-grid-metadata --watch=false
+
+      - name: Build library
+        run: npx ng build ngx-ag-grid-metadata
+
+      - name: Publish
+        run: npm publish --access public
+        working-directory: dist/ngx-ag-grid-metadata
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
