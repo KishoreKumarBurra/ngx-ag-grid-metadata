@@ -1,0 +1,14 @@
+{
+  "name": "ngx-ag-grid-metadata",
+  "version": "0.1.0",
+  "description": "Metadata-driven AG Grid column generation for Angular — dynamic columnDefs, data-type-based filters, and configurable header/anchor-link/icon cell behaviors.",
+  "peerDependencies": {
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "ag-grid-community": "^35.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
